@@ -13,7 +13,7 @@ function showResult(id) {
     fetch('https://187.250.50.127:25565/api/id', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ id: 123455 })
+        body: JSON.stringify({ id: id })
     })
       .then(res => res.text())
     .then(data => console.log("Respuesta del servidor:", data))
