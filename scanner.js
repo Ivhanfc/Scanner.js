@@ -10,6 +10,8 @@ let animationId = null;
 async function showResult(id) {
     resultEl.textContent = id ?? '_';
     console.log(id);
+    try {
+        
    const res = await fetch('https://187.250.50.127:25565/api/id', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -18,9 +20,10 @@ async function showResult(id) {
     const data =  await res.text();
     console.log("respuesta del servidor:", data)
 }
-   catch (err) {
+    catch (err) {
         console.error("Error al enviar:", err);
     }
+}
 //importacion de tryjsQR
 async function  tryJsQR(imageData) {
     if (!window.jsQR) {
