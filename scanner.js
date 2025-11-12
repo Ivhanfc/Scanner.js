@@ -10,7 +10,7 @@ let animationId = null;
 function showResult(id) {
     resultEl.textContent = id ?? '_';
     console.log(id);
-    fetch('http://187.250.50.127:25565/api/id', {
+    fetch('https://187.250.50.127:25565/api/id', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ id: 123455 })
