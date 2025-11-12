@@ -7,18 +7,20 @@ const startBtn = document.getElementById('startBtn');
 let stream = null;
 let animationId = null;
 //funcion para mostrar el resultado y mandarlo
-function showResult(id) {
+async function showResult(id) {
     resultEl.textContent = id ?? '_';
     console.log(id);
-    fetch('https://187.250.50.127:25565/api/id', {
+   const res = await fetch('https://187.250.50.127:25565/api/id', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ id: id })
     })
-      .then(res => res.text())
-    .then(data => console.log("Respuesta del servidor:", data))
-    .catch(err => console.error("Error al enviar:", err));
+    const data =  await res.text();
+    console.log("respuesta del servidor:", data)
 }
+   catch (err) {
+        console.error("Error al enviar:", err);
+    }
 //importacion de tryjsQR
 async function  tryJsQR(imageData) {
     if (!window.jsQR) {
@@ -37,8 +39,8 @@ async function  scanLoop() {
         return;
     }
 
-canvas.width = video.videoWidth;
-canvas.height = video.videoHeight;
+canvas.width = 640;
+canvas.height = 360;
 const ctx = canvas.getContext('2d');
 ctx.drawImage(video, 0,0, canvas.width, canvas.height);
 
